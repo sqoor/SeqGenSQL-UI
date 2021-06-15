@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <h1>Fixed Table header</h1>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    {% for column in columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+    </div>
+    <div class="tbl-content">
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                {% for cell in row %}
+                {% if cell == None %}
+                <td>-</td>
+                {% else %}
+                <td>{{ cell }}</td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</section>
+
+
+<script src="static/table.js"></script>
+{% endblock %}

@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Web app the uses deep learning model to convert text to sql and execute it after connecting to a certain database.">
+    <meta name="author" content="Abdullah">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/form1.css">
+    <link rel="stylesheet" href="static/navbar.css">
+    <link rel="stylesheet" href="static/table2.css">
+    
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>SeqGenSQL</title>
+    {% endif %}
+</head>
+
+<body>
+    <nav>
+        <div id="wrapper">
+            <ul>
+                <li><a href="{{url_for('connect')}}">Connect DB</a></li>
+                <li><a href="{{url_for('convert')}}">Convert Text to SQL</a></li>
+                <li><a href="">item2</a></li>
+                <li class="different"><a href="">item3</a></li>
+                <li class="different"><a href="">item4</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="messages-content">
+        <div class="messages">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </div>
+    
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>

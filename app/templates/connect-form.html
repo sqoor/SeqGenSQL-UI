@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="screen">
+        <div class="screen__content">
+            <div class="title">
+                {{title}}
+            </div>
+            <form class="login" method="POST">
+                <div class="login__errors" 
+                    {% if form.errors.items() or connError %} 
+                        style="visibility: visible;"      
+                    {% else %}
+                        style="visibility: hidden;"    
+                    {% endif %}
+                >
+                    Errors List:
+                    <ul>
+                        {% for field, errors in form.errors.items() %}
+                        <i>
+                            <p>
+                                {{ form[field].label }}: {{ ', '.join(errors) }}
+                            </p>
+                        </i>
+                        {% endfor %}
+                    </ul>
+                    <!-- {% if connError %} -->
+                        <p> {{ connError }} </p>
+                    <!-- {% endif %} -->
+                </div>
+                {{ form.hidden_tag() }}
+                <div class="login__field">
+                    <i class="login__icon fas fa-user"></i>
+                    <input type="text" class="login__input" placeholder="Username" name="username" id="username">
+                </div>
+                <div class="login__field">
+                    <i class="login__icon fas fa-lock"></i>
+                    <input type="password" class="login__input" placeholder="Password" name="password" id="password">
+                </div>
+                <div class="login__field">
+                    <i class="login__icon fas fa-user"></i>
+                    <input type="text" class="login__input" placeholder="Host/Server" name="server" id="server">
+                </div>
+                <div class="login__field">
+                    <i class="login__icon fas fa-user"></i>
+                    <input type="text" class="login__input" placeholder="Database" name="db" id="db">
+                </div>
+                <button class="button login__submit" name="submit" id="submit">
+                    <span class="button__text">Connect</span>
+                    <i class="button__icon fas fa-chevron-right"></i>
+                </button>
+            </form>
+            <!-- <div class="social-login">
+                <h3>log in via</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-login__icon fab fa-instagram"></a>
+                    <a href="#" class="social-login__icon fab fa-facebook"></a>
+                    <a href="#" class="social-login__icon fab fa-twitter"></a>
+                </div>
+            </div> -->
+        </div>
+        <div class="screen__background">
+            <span class="screen__background__shape screen__background__shape4"></span>
+            <span class="screen__background__shape screen__background__shape3"></span>
+            <span class="screen__background__shape screen__background__shape2"></span>
+            <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}
